@@ -1,4 +1,10 @@
-/* 首页海报：用证件照替换「伟」字，照片铺满整个框，DAVID/01 与角标浮在照片上层 */
+/* 首页海报：简历卡横向铺满，Da / vid 分列两侧 */
+.identity-poster{
+  width:440px;
+  height:242px;
+  top:150px;
+  background:#fff;
+}
 .poster-photo{
   position:absolute;
   top:50%;
@@ -6,12 +12,36 @@
   transform:translate(-50%,-50%);
   height:100%;
   width:100%;
-  object-fit:cover;
-  object-position:center 20%;
+  object-fit:contain;
+  object-position:center;
   display:block;
   z-index:0;
-  background:transparent;
+  background:#fff;
 }
 /* 让文字标签与角标压在照片之上 */
 .poster-index{z-index:3;}
 .corner{z-index:3;}
+
+/* 卡片加宽后，两侧大字同步外移，保证不压卡 */
+.name-solid{right:calc(50% + 245px);}
+.name-outline{left:calc(50% + 245px);}
+
+@media(min-width:1440px){
+  .identity-poster{top:176px;}
+}
+@media(max-width:950px){
+  .identity-poster{width:340px;height:187px;top:150px;}
+  .name-solid{right:calc(50% + 185px);}
+  .name-outline{left:calc(50% + 185px);}
+}
+@media(max-width:680px){
+  .identity-poster{width:200px;height:110px;top:176px;}
+  .name-solid{right:calc(50% + 115px);}
+  .name-outline{left:calc(50% + 115px);}
+}
+@media(max-width:600px){
+  .identity-poster{width:170px;height:94px;top:172px;}
+  .name-solid,.name-outline{font-size:58px;letter-spacing:-3px;}
+  .name-solid{right:calc(50% + 95px);top:167px;}
+  .name-outline{left:calc(50% + 95px);top:262px;}
+}
