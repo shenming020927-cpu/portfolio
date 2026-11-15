@@ -1,8 +1,11 @@
 /* 首页海报：简历卡横向铺满，Da / vid 分列两侧 */
 .identity-poster{
-  width:440px;
-  height:242px;
-  top:150px;
+  width:min(720px, 72%);
+  aspect-ratio:1284/797;
+  height:auto;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
   background:#fff;
 }
 .poster-photo{
@@ -23,25 +26,23 @@
 .corner{z-index:3;}
 
 /* 卡片加宽后，两侧大字同步外移，保证不压卡 */
-.name-solid{right:calc(50% + 245px);}
-.name-outline{left:calc(50% + 245px);}
+.name-solid{right:calc(86% + 10px);}
+.name-outline{left:calc(86% + 10px);}
 
-@media(min-width:1440px){
-  .identity-poster{top:176px;}
-}
 @media(max-width:950px){
-  .identity-poster{width:340px;height:187px;top:150px;}
-  .name-solid{right:calc(50% + 185px);}
-  .name-outline{left:calc(50% + 185px);}
+  .identity-poster{width:68%;}
+  .name-solid{right:calc(84% + 10px);}
+  .name-outline{left:calc(84% + 10px);}
 }
 @media(max-width:680px){
-  .identity-poster{width:200px;height:110px;top:176px;}
-  .name-solid{right:calc(50% + 115px);}
-  .name-outline{left:calc(50% + 115px);}
+  .identity-poster{width:350px;}
+  .name-solid,.name-outline{font-size:60px;letter-spacing:-3px;}
+  .name-solid{right:calc(50% + 186px);top:186px;}
+  .name-outline{left:calc(50% + 186px);top:286px;}
 }
 @media(max-width:600px){
-  .identity-poster{width:170px;height:94px;top:172px;}
-  .name-solid,.name-outline{font-size:58px;letter-spacing:-3px;}
-  .name-solid{right:calc(50% + 95px);top:167px;}
-  .name-outline{left:calc(50% + 95px);top:262px;}
+  .identity-poster{width:208px;}
+  .name-solid,.name-outline{font-size:50px;letter-spacing:-3px;}
+  .name-solid{right:calc(50% + 112px);top:172px;}
+  .name-outline{left:calc(50% + 112px);top:262px;}
 }
