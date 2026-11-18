@@ -149,10 +149,11 @@ document.querySelectorAll('.work-tab').forEach(function(tab){
 
 function aivideoCase(){return splitCase({
   eyebrow:'04 / AI 视频',
-  title:'AI 夜景短片 · 迷茫',
+  title:'AI 短片《下一页》',
   desc:'一场夜戏，从白模预演到成片：先用灰模把机位、走位、光位定死，再让 AI 出片。AI 视频最难的不是画质，是人物在每个镜头里长得一样、动作接得上——这套流程就是为了控制这件事。',
   shots:[
-    {src:'assets/aivideo/cover.jpg',label:'主场景 · 封面',cap:'夜景主场景 · 图书馆之外的光',detail:'<p><strong>主场景——</strong>全片的亮部只有图书馆一处，人物从暗里走向光。封面取的就是这个信息：亮在哪、人往哪走。</p>'},
+    {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'},
+    {src:'assets/aivideo/scene.jpg',label:'场景 · 外景',cap:'主场景 · 图书馆之外',detail:'<p><strong>主场景——</strong>全片的亮部只有图书馆一处，人物从暗里走向光。夜景最难的是让「亮」有依据：霓虹都在远处，近处只有一排路灯和一栋楼。</p>'},
     {src:'assets/aivideo/previs-2.jpg',label:'灰模 · 人物',cap:'灰模预演 · 夜里的背影',detail:'<p><strong>白模预演——</strong>不贴图、不打光，先用灰模把人物的位置、朝向、镜头距离定下来。这一步不关心好不好看，只关心人站在画面哪儿、往哪儿动。</p>'},
     {src:'assets/aivideo/previs-3.jpg',label:'灰模 · 动作',cap:'灰模预演 · 低头瞬间',detail:'<p>关键动作先在灰模里对时间点：低头、停住、抬眼。动作幅度得和镜头运动匹配，不然成片里人的动作会「飘」。</p>'},
     {src:'assets/aivideo/previs-1.jpg',label:'灰模 · 近景',cap:'灰模预演 · 人物近景',detail:'<p>近景这一档最考验构图：脸放在画面哪个位置、边缘留多少空间，先在灰模里排好，再交给 AI 生成，跨镜头才不走形。</p>'},
