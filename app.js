@@ -64,13 +64,14 @@ function splitCase(o){
 function guideCase(){return splitCase({
   eyebrow:'01 / 信息产品',
   title:'升学指南 · 专升本信息服务站',
-  desc:'把散在各处的专升本信息收拢成三个能查的模块：行情、投档线、资格流程。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
+  desc:'把散在各处的升学信息收拢成四个能查的模块：专升本行情、投档线、报考资格流程，以及全国民办与国际学校的招生范围与对外名额。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
   shots:[
     {src:'assets/guide-shot1.jpg',label:'行情数据',cap:'行情数据 · 三年趋势，报考涨、公办缩',detail:'<p><strong>行情数据——</strong>把 2024—2026 三年报考人数、招生计划、公办/民办占比做进一张趋势图，先看今年整体是变难还是变容易，再决定冲哪类学校。</p>'},
     {src:'assets/guide-shot3.jpg',label:'投档线查询',cap:'投档线查询 · 按年份/院校/专业筛选',detail:'<p><strong>投档线查询——</strong>按年份、院校、专业三维筛选，直接回答“我这个专业多少分能上”。表里含院校、专业、投档最低分，可按分数从高到低排序。</p>'},
-    {src:'assets/guide-shot4.jpg',label:'资格与流程',cap:'资格与流程 · 视频按身份跳章节',detail:'<p><strong>资格与流程——</strong>六类考生身份（统考/校荐/自荐/建档立卡/退役士兵/大赛保送）逐条拆：能不能报、什么时候报、和谁一起录，并配视频按身份跳章节。</p>'}
+    {src:'assets/guide-shot4.jpg',label:'资格与流程',cap:'资格与流程 · 视频按身份跳章节',detail:'<p><strong>资格与流程——</strong>六类考生身份（统考/校荐/自荐/建档立卡/退役士兵/大赛保送）逐条拆：能不能报、什么时候报、和谁一起录，并配视频按身份跳章节。</p>'},
+    {src:'assets/guide-private.jpg',label:'民办校查询',cap:'民办校查询 · 省市区三级筛选，逐校看范围与名额',detail:'<p><strong>民办校查询——</strong>31 个省级行政区、289 条逐校记录：每所学校的小学／初中／高中分别写清“招生范围”和“对外招生名额”，可按省、市、区三级筛选，也能按学段只看有对外计划的学校。原文写明的跨区人数单独标出来，没公布的写“未单列”，不做估算。<a href="site/private.html" target="_blank" rel="noopener">打开查询页 ↗</a></p>'}
   ],
-  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新，仅覆盖山东。'
+  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；专升本部分仅覆盖山东，民办校部分为全国 31 个省级行政区。'
 });}
 function policyCase(){
   var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');

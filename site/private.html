@@ -203,16 +203,18 @@ function cell(o){
   if(!o) return '';
   const rng = o.range||'未收录', q = o.quota||'';
   const isOk = rng!=='未收录' && rng!=='';
-  const probe = (rng+' '+q).replace(/外区\s*0\s*人/g,'');
+  const all = rng+' '+q;
+  const neg = /不(接收|收|招|跨)|不得跨|外区\s*0\s*人|仅本区|仅面向本区/.test(all);
   const none = !q || /未单列|未收录/.test(q) || /仅本区/.test(q);
-  const cross = !none && !/^仅/.test(rng) && /外区|跨区|全市|市外|全国/.test(probe);
+  const cross = !none && !neg && !/^仅/.test(rng) && /外区|跨区|全市|市外|全国/.test(all.replace(/外区\s*0\s*人/g,''));
   return `<span class="rng">${isOk?rng:'<span style="color:var(--muted)">未收录</span>'}</span>` +
          (q? `<span class="qty ${none?'none':(cross?'cross':'')}">${q}${cross&&!none?'<span class="tag-cross">跨区</span>':''}</span>`:'');
 }
 function flatCell(s){
-  const probe = ((s.r||'')+' '+(s.q||'')).replace(/外区\s*0\s*人/g,'');
+  const all = (s.r||'')+' '+(s.q||'');
+  const neg = /不(接收|收|招|跨)|不得跨|外区\s*0\s*人|仅本区|仅面向本区/.test(all);
   const none = !s.q || /未单列|未收录/.test(s.q) || /仅本区/.test(s.q);
-  const cross = !none && /外区|跨区|全市|市外|全国/.test(probe);
+  const cross = !none && !neg && /外区|跨区|全市|市外|全国/.test(all);
   return `<div class="flat-block"><b>${s.r||'未收录'}</b><br>${s.q?`<span class="qty ${none?'none':(cross?'cross':'')}" style="display:inline-block;margin-top:6px">${s.q}${cross&&!none?'<span class="tag-cross">跨区</span>':''}</span>`:''}</div>`;
 }
 function render(){
