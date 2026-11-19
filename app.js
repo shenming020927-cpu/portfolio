@@ -31,7 +31,7 @@ var POLICY_CHAPTERS=[["00:01",1,"统考科目"],["00:16",16,"校荐生"],["00:48
 function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return;document.querySelectorAll('.chapter-btn').forEach(function(b){b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t)||0;v.play();});});v.addEventListener('timeupdate',function(){var t=v.currentTime;var els=document.querySelectorAll('.chapter-btn');var cur=0;POLICY_CHAPTERS.forEach(function(c,i){if(t>=c[1])cur=i;});els.forEach(function(x,i){x.classList.toggle('on',i===cur);});});}
 
 function aivideoCase(){return splitCase({
-  eyebrow:'05 / AI 视频',
+  eyebrow:'04 / AI 视频',
   title:'AI 短片《下一页》',
   desc:'一场夜戏，从白模预演到成片：先用灰模把机位、走位、光位定死，再让 AI 出片。AI 视频最难的不是画质，是人物在每个镜头里长得一样、动作接得上——这套流程就是为了控制这件事。',
   shots:[
@@ -42,19 +42,18 @@ function aivideoCase(){return splitCase({
 
 function psbasicCase(){return splitCase({
   eyebrow:'03 / 平面设计',
-  title:'三折招生简章 · 版式与信息分层',
-  desc:'一张 A4 对折两次、六面的招生简章：封面只放一句话和主视觉，内页讲课程怎么接续，底页放招生计划、学费与报名四步。做的是信息分层——家长在路上翻三秒，得知道「这所学校跟别家差在哪」。',
+  title:'平面设计 · 招生海报',
+  desc:'这张是给招生场景做的落地稿：黄底墨绿撞色、巨字压在座椅图上，下沿撕纸边，猫是单独抠出来贴进去的。练的是撞色控制、蒙版边缘和抠图。其余几张练习收在下面的相册里。',
   shots:[
-    {src:'assets/ps/trifold.jpg',label:'三折简章',cap:'三折招生简章 · 外页与内页展开',detail:'<p><strong>结构——</strong>六面三段：左段是「来校看看」（开放日、地址、二维码），中段是「为什么是一所学校读到底」（课程接续、三条路），右段是「招多少人、多少钱」（学段学费表、师资、报名四步）。</p><p>判断：家长最先翻的是学费和名额，所以招生计划放在随手就能翻到的一面；校训和理念放封面，不占内页。</p><p>版式：米底 + 深墨绿、细线分区，不用大色块——三折页要打印，油墨一旦满版，折痕处容易断色。</p>'},
+    {src:'assets/ps/poster-rebel.jpg',label:'招生海报',cap:'招生海报 · 撞色大字报与抠图',detail:'<p><strong>招生海报——</strong>黄底墨绿撞色、巨字「招生！」压在座椅图上，下沿做撕纸边，橘猫是单独抠出来贴进去的。练撞色控制、图层蒙版边缘和抠图（毛发处保留一点杂边反而自然）。</p>'},
   ],
   albumFit:'contain',
   album:[
-    {src:'assets/ps/poster-rebel.jpg',cap:'招生海报 · 撞色大字报与抠图'},
     {src:'assets/ps/poster-ten.jpg',cap:'海报仿作 · 蓝白渐变版式临摹'},
     {src:'assets/ps/color-card.jpg',cap:'调色拆解 · 主色板与色相一致性'},
     {src:'assets/ps/wallpaper.jpg',cap:'壁纸 · 长图配色练习'},
   ],
-  note:'主图是三折页版式稿（学校名与数字留了占位），相册里是海报与调色练习；版式参考了公开作品，配色与信息结构是自己重排的。'
+  note:'主图是招生落地稿，相册里是练习作品；版式参考了原作，调色参数和配色是自己重算的。'
 });}
 function portraitsCase(){
  const pair=(id)=>{
