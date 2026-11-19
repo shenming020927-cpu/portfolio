@@ -28,8 +28,6 @@ function guideCase(){return `<div class="dialog-content"><div class="eyebrow">01
 
 var POLICY_CHAPTERS=[["00:01",1,"统考科目"],["00:16",16,"校荐生"],["00:48",48,"自荐生"],["01:08",68,"建档立卡"],["01:34",94,"退役士兵"],["02:10",130,"大赛保送"],["02:39",159,"共同时间"],["02:55",175,"最后提醒"],["03:08",188,"3+2 转段"]];
 
-function policyCase(){var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');return `<div class="dialog-content"><div class="eyebrow">02 / 视频作品</div><h2 id="dialog-title">招生政策 · 3 分钟像素讲解</h2><p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节，点哪段看哪段。</p><figure class="video-player"><video id="policy-video" controls playsinline preload="metadata" poster="site/assets/eligibility-poster.jpg"><source src="site/assets/eligibility-2026-v9.mp4" type="video/mp4">当前浏览器不支持视频播放。</video></figure><p class="note">1280×720 · 时长 03:20 · 完整配音与字幕</p><h3>按身份跳转</h3><div class="chapter-grid">`+chs+`</div><h3>同一个体系里的第二件东西：民办校查询</h3><p class="description">讲解片解决「听不懂」，查询解决「查不到」。把 31 个省级行政区的民办与国际学校招生范围、对外招生名额做成一张能查的表：先选省份，再选城市和区，最后看学校；每所学校的小学 / 初中 / 高中分别写清招生范围和名额。</p><figure class="video-player" style="aspect-ratio:auto"><img src="assets/guide-private.jpg" alt="民办校查询页面：省市区三级筛选、逐校招生范围与名额" style="width:100%;display:block"></figure><p class="note">289 条逐校记录 · 94 个区县 · 省市区三级联动 + 学段筛选 · <a href="site/private.html" target="_blank" rel="noopener">单独打开查询页 ↗</a></p><h3>为什么拍成视频</h3><ul class="case-notes"><li><strong>政策类内容有两种读者：</strong>要核对的人（会看表格）和要听懂的人（只看视频）。只做文字等于放弃后者，而后者是大多数。</li><li><strong>章节按"你是哪种人"切，不按文件顺序切。</strong>学生一进来就能跳到自己那一段。</li><li><strong>一步只给一个信息点。</strong>像素风细节少，画面里多放一个元素，观众就不知道该看哪儿。</li></ul><h3>我知道的问题</h3><ul class="case-notes"><li>像素风降低门槛，但严肃政策用卡通形象，可信度会打折——所以视频旁边必须配文字版。</li><li>3 分钟塞 9 个信息点偏密，真实场景应该拆成 3 条 1 分钟短视频。</li><li>没测过完播率，章节跳转是我对"看不下去"的解法，但没有数据证明有效。</li></ul></div>`}
-
 function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return;document.querySelectorAll('.chapter-btn').forEach(function(b){b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t)||0;v.play();});});v.addEventListener('timeupdate',function(){var t=v.currentTime;var els=document.querySelectorAll('.chapter-btn');var cur=0;POLICY_CHAPTERS.forEach(function(c,i){if(t>=c[1])cur=i;});els.forEach(function(x,i){x.classList.toggle('on',i===cur);});});}
 
 function aivideoCase(){return splitCase({
@@ -37,34 +35,39 @@ function aivideoCase(){return splitCase({
   title:'AI 短片《下一页》',
   desc:'一场夜戏，从白模预演到成片：先用灰模把机位、走位、光位定死，再让 AI 出片。AI 视频最难的不是画质，是人物在每个镜头里长得一样、动作接得上——这套流程就是为了控制这件事。',
   shots:[
-    {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'},
-    {src:'assets/aivideo/scene.jpg',label:'场景 · 外景',cap:'主场景 · 图书馆之外',detail:'<p><strong>主场景——</strong>全片的亮部只有图书馆一处，人物从暗里走向光。夜景最难的是让「亮」有依据：霓虹都在远处，近处只有一排路灯和一栋楼。</p>'},
-    {src:'assets/aivideo/previs-2.jpg',label:'灰模 · 人物',cap:'灰模预演 · 夜里的背影',detail:'<p><strong>白模预演——</strong>不贴图、不打光，先用灰模把人物的位置、朝向、镜头距离定下来。这一步不关心好不好看，只关心人站在画面哪儿、往哪儿动。</p>'},
-    {src:'assets/aivideo/previs-3.jpg',label:'灰模 · 动作',cap:'灰模预演 · 低头瞬间',detail:'<p>关键动作先在灰模里对时间点：低头、停住、抬眼。动作幅度得和镜头运动匹配，不然成片里人的动作会「飘」。</p>'},
-    {src:'assets/aivideo/previs-1.jpg',label:'灰模 · 近景',cap:'灰模预演 · 人物近景',detail:'<p>近景这一档最考验构图：脸放在画面哪个位置、边缘留多少空间，先在灰模里排好，再交给 AI 生成，跨镜头才不走形。</p>'},
-    {src:'assets/aivideo/render-1.jpg',label:'渲染 · 墙面',cap:'渲染测试 · 阵列墙面与暗部',detail:'<p><strong>渲染测试——</strong>夜景戏最怕死黑。先在没有人的纯场景里试片：这一帧看的是阵列墙面的高光与暗部层次，亮部有没有过曝、暗处会不会塌成一整块黑。</p>'},
-    {src:'assets/aivideo/render-2.jpg',label:'渲染 · 地面',cap:'渲染测试 · 地面反光与光比',detail:'<p>用最简单的几何体先把光比跑通：地面反光多强、边缘黑位落在哪。地面不对，夜景看起来就像贴图。</p>'},
-    {src:'assets/aivideo/render-3.jpg',label:'渲染 · 极暗帧',cap:'渲染测试 · 极暗帧',detail:'<p>压到最暗的一帧，看灰阶在哪儿塌掉、地平线还剩不剩。先知道极限，AI 出片时暗部才敢往下压。</p>'}
+    {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'}
   ],
-  note:'流程：手绘分镜 → 3D 白模预演 → 灯光测试 → AI 生成 → 拼接调色。白模与测试帧来自 3D 预演，成片在即梦画布里继续生成：<a href="https://jimeng.jianying.com/ai-tool/ai-canvas/c6905d03-5df5-4c78-b2ba-a87f8e90dc7c" target="_blank" rel="noopener">在即梦打开项目画布 ↗</a>（需登录即梦账号）'
+  note:'流程：手绘分镜 → 3D 白模预演 → 灯光测试 → AI 生成 → 拼接调色。这里只放封面，白模与测试帧不铺开；成片在即梦画布里继续生成：<a href="https://jimeng.jianying.com/ai-tool/ai-canvas/c6905d03-5df5-4c78-b2ba-a87f8e90dc7c" target="_blank" rel="noopener">在即梦打开项目画布 ↗</a>（需登录即梦账号）'
 });}
 
 function psbasicCase(){return splitCase({
   eyebrow:'03 / 平面设计',
-  title:'平面设计 · 海报与调色',
-  desc:'这一组是练手：把别人的版式拆开、把一张图的颜色拆开，再自己拼回去。四件东西分别练排版层级、撞色与抠图、调色判断和长图配色。点左侧按钮看大图。',
+  title:'平面设计 · 招生海报',
+  desc:'这张是给招生场景做的落地稿：黄底墨绿撞色、巨字压在座椅图上，下沿撕纸边，猫是单独抠出来贴进去的。练的是撞色控制、蒙版边缘和抠图。其余几张练习收在下面的相册里。',
   shots:[
-    {src:'assets/ps/poster-ten.jpg',label:'海报仿作',cap:'十分海报 · 蓝白渐变版式临摹',detail:'<p><strong>海报仿作——</strong>临摹一张讲稿封面：左侧把「十分」两个字放大成视觉锚点，右侧留白放招新海报本体，蓝白渐变打底、少量星点提亮。练的是字号层级和主次：一张图里只允许一个东西最大。</p>'},
-    {src:'assets/ps/poster-rebel.jpg',label:'招生海报',cap:'招生海报 · 撞色大字报与抠图',detail:'<p><strong>招生海报——</strong>黄底墨绿撞色、巨字「招生！」压在座椅图上，下沿做撕纸边，橘猫是单独抠出来贴进去的。练撞色控制、图层蒙版边缘和抠图（毛发处保留一点杂边反而自然）。</p>'},
-    {src:'assets/ps/color-card.jpg',label:'调色拆解',cap:'拆色卡 · 主色板与色相一致性',detail:'<p><strong>调色拆解——</strong>写了个脚本把一张图按区域采样 HSL、算阴影到高光的色相偏移、再出主色板，每天拆一张。练的是「看一张图能说出它偏什么色、哪块被单独推过」，而不是凭感觉拖滑块。</p>'},
-    {src:'assets/ps/wallpaper.jpg',label:'壁纸',cap:'壁纸 · 长图配色练习',detail:'<p><strong>壁纸——</strong>把同一套配色搬到 16:10 的长图上，练大面积色块的过渡和留白，和小尺寸海报的取舍完全不同：越大的图越要敢空。</p>'},
+    {src:'assets/ps/poster-rebel.jpg',label:'招生海报',cap:'招生海报 · 撞色大字报与抠图',detail:'<p><strong>招生海报——</strong>黄底墨绿撞色、巨字「招生！」压在座椅图上，下沿做撕纸边，橘猫是单独抠出来贴进去的。练撞色控制、图层蒙版边缘和抠图（毛发处保留一点杂边反而自然）。</p><p>落地判断：家长在手机上先看到的是「招生！」三个字，所以字号让到极限；机构信息压到边角，不做第二视觉中心。</p>'},
   ],
-  note:'四件都是练习作品，不是商单；版式参考了原作，调色参数和配色是自己重算的。'
+  album:[
+    {src:'assets/ps/poster-ten.jpg',cap:'海报仿作 · 蓝白渐变版式临摹'},
+    {src:'assets/ps/color-card.jpg',cap:'调色拆解 · 主色板与色相一致性'},
+    {src:'assets/ps/wallpaper.jpg',cap:'壁纸 · 长图配色练习'},
+  ],
+  note:'主图是招生落地稿，相册里是练习作品：版式参考了原作，调色参数和配色是自己重算的。'
 });}
 function portraitsCase(){
- const works=[['flower','持花人像','调色与修图'],['street','秋日街角 · 环卫工','纪实调色：压黄、冷灰、暗部提亮'],['cutout','人物抠图','背景分离与纯色背景成片']];
- return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像与纪实修图 · 修改前后对照</h2><p class="description">三组个人练习，左修改前、右修改后并排对照：人像两组、街头纪实一组。点击照片可在新窗口查看大图。</p>${works.map(([id,title,note],i)=>`<section class="portrait-section"><h3><span>0${i+1}</span> ${title}</h3><p class="note">${note}</p><div class="portrait-pair">${['before','after'].map((state)=>`<figure><a href="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" target="_blank" rel="noopener" aria-label="查看${title}${state==='before'?'修改前':'修改后'}大图（新窗口）"><img src="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" alt="${title} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`).join('')}</div></section>`).join('')}</div>`;
+ const pair=(id)=>{
+   const f=(state)=>`<figure><a href="assets/portraits/${id}-${state}.jpg" target="_blank" rel="noopener" aria-label="查看大图（新窗口）"><img src="assets/portraits/${id}-${state}.jpg" alt="${id} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`;
+   return `<div class="portrait-pair">${f('before')}${f('after')}</div>`;
+ };
+ return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">纪实修图 · 修改前后对照</h2><p class="description">主看一组街头纪实：压黄、冷灰、抬暗部，让脏和旧变成质感而不是噪点。左修改前、右修改后，点照片可看大图；另外两组练习收在下面的相册里。</p>
+ <section class="portrait-section"><h3><span>02</span> 秋日街角 · 环卫工</h3><p class="note">纪实调色：压黄、冷灰、暗部提亮</p>${pair('street')}</section>
+ <div class="album"><h3>相册 · 其他练习</h3><div class="album-grid">
+   <figure><a href="assets/portraits/flower-after.jpg" target="_blank" rel="noopener"><img src="assets/portraits/flower-after.jpg" alt="持花人像" loading="lazy"></a><figcaption>持花人像 · 调色与修图</figcaption></figure>
+   <figure><a href="assets/portraits/cutout-after.jpg" target="_blank" rel="noopener"><img src="assets/portraits/cutout-after.jpg" alt="人物抠图" loading="lazy"></a><figcaption>人物抠图 · 背景分离与纯色背景</figcaption></figure>
+ </div></div>
+ </div>`;
 }
+
 
 /* 作品详情：分栏按钮交互（左=缩略按钮+当前模块说明，右=放大图；两作品统一风格） */
 function splitCase(o){
@@ -92,6 +95,7 @@ function splitCase(o){
         +'<figcaption id="shot-preview-cap">'+(first.cap||'')+'</figcaption>'
       +'</figure></div>'
     +'</div>'
+    +(o.album&&o.album.length?('<div class="album"><h3>相册 · 其他练习</h3><div class="album-grid">'+o.album.map(function(a){return '<figure><a href="'+a.src+'" target="_blank" rel="noopener" aria-label="查看大图（新窗口）"><img src="'+a.src+'" alt="'+a.cap+'" loading="lazy"></a><figcaption>'+a.cap+'</figcaption></figure>';}).join('')+'</div></div>'):'')
     +'<p class="note">'+o.note+'</p>'
   +'</div>';
 }
@@ -108,16 +112,16 @@ function guideCase(){return splitCase({
   note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；专升本部分仅覆盖山东，民办校部分为全国 31 个省级行政区。'
 });}
 function policyCase(){
-  var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');
   return `<div class="dialog-content video-details">
   <div class="eyebrow">02 / 视频作品</div>
   <h2 id="dialog-title">招生政策 · 3 分钟像素讲解</h2>
-  <p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节，点哪段看哪段。</p>
+  <p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节。</p>
+
+  <figure class="video-cover"><img src="site/assets/eligibility-poster.jpg" alt="招生政策像素讲解片封面：小书与六类考生章节"><figcaption>成片封面 · 1280×720 · 时长 03:20</figcaption></figure>
 
   <section class="detail-section">
     <h3 class="section-tag">虚拟形象 · 小书</h3>
     <div class="char-block">
-      <figure class="char-fig"><img src="assets/policy-frame1.jpg" alt="虚拟形象「小书」人物设定"></figure>
       <div class="char-text">
         <p>「小书」是这条讲解片的串场讲解员——一个像素风小人，负责把每一类考生的流程讲清楚。政策内容严肃又容易枯燥，用稳定的虚拟角色能把九段流程串成一条线，观众记住的是“小书讲的第几类”，而不是一堆零散的知识点。</p>
         <ul class="case-notes">
@@ -136,23 +140,10 @@ function policyCase(){
       <li><em>02</em><div><b>分镜脚本</b>按六类考生身份拆成 9 个章节，一步只给一个信息点。</div></li>
       <li><em>03</em><div><b>视频生成</b>用 AI 首尾帧生成像素风成片，1280×720，含配音与字幕。</div></li>
     </ol>
-    <div class="process-gallery">
-      <figure><img src="assets/policy-frame1.jpg" alt="角色设定 · 小书"><figcaption>角色设定 · 小书</figcaption></figure>
-      <figure><img src="assets/policy-frame2.jpg" alt="分镜脚本 · 9 章"><figcaption>分镜脚本 · 9 章</figcaption></figure>
-      <figure><img src="assets/policy-frame3.jpg" alt="视频生成 · 成片"><figcaption>视频生成 · 成片</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="detail-section">
-    <h3 class="section-tag">时间轴 · 跳到你关心的部分</h3>
-    <figure class="video-player"><video id="policy-video" controls playsinline preload="metadata" poster="site/assets/eligibility-poster.jpg"><source src="site/assets/eligibility-2026-v9.mp4" type="video/mp4">当前浏览器不支持视频播放。</video></figure>
-    <p class="note">1280×720 · 时长 03:20 · 完整配音与字幕</p>
-    <div class="chapter-grid">`+chs+`</div>
-    <p class="note">点击章节后，视频从对应位置播放；播放时右侧章节会高亮你正在看的那一段。</p>
   </section>
 
 
-  <p class="note">边界：像素风降低门槛，但严肃政策仍需配文字版；3 分钟塞 9 个点偏密，真实场景应拆成 3 条短视频；未测完播率，章节跳转是解法但暂无数据验证。</p>
+  <p class="note">边界：像素风降低门槛，但严肃政策仍需配文字版；3 分钟塞 9 个点偏密，真实场景应拆成 3 条短视频；未测完播率，章节跳转是解法但暂无数据验证；这里只放封面，成片与分镜不再铺开。</p>
 </div>`;
 }
 dialog.addEventListener('click',function(e){
