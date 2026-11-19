@@ -51,7 +51,7 @@ function aivideoCase(){return splitCase({
 
 function psbasicCase(){return splitCase({
   eyebrow:'03 / 平面设计',
-  title:'PS 基础 · 海报与调色',
+  title:'平面设计 · 海报与调色',
   desc:'这一组是练手：把别人的版式拆开、把一张图的颜色拆开，再自己拼回去。四件东西分别练排版层级、撞色与抠图、调色判断和长图配色。点左侧按钮看大图。',
   shots:[
     {src:'assets/ps/poster-ten.jpg',label:'海报仿作',cap:'十分海报 · 蓝白渐变版式临摹',detail:'<p><strong>海报仿作——</strong>临摹一张讲稿封面：左侧把「十分」两个字放大成视觉锚点，右侧留白放招新海报本体，蓝白渐变打底、少量星点提亮。练的是字号层级和主次：一张图里只允许一个东西最大。</p>'},
@@ -63,7 +63,7 @@ function psbasicCase(){return splitCase({
 });}
 function portraitsCase(){
  const works=[['flower','持花人像','调色与修图'],['dress','古风人像','构图与调色'],['cutout','人物抠图','背景分离与纯色背景成片']];
- return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像修图与抠图</h2><p class="description">三组个人练习，保留原图与成片对照。点击照片可在新窗口查看大图。</p>${works.map(([id,title,note],i)=>`<section class="portrait-section"><h3><span>0${i+1}</span> ${title}</h3><p class="note">${note}</p><div class="portrait-pair">${['before','after'].map((state)=>`<figure><a href="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" target="_blank" rel="noopener" aria-label="查看${title}${state==='before'?'原图':'成片'}大图（新窗口）"><img src="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" alt="${title} · ${state==='before'?'原图':'成片'}" loading="lazy"></a><figcaption>${state==='before'?'原图':'成片'}<span>查看大图 ↗</span></figcaption></figure>`).join('')}</div></section>`).join('')}</div>`;
+ return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像修图 · 修改前后对照</h2><p class="description">三组个人练习，左修改前、右修改后并排对照。点击照片可在新窗口查看大图。</p>${works.map(([id,title,note],i)=>`<section class="portrait-section"><h3><span>0${i+1}</span> ${title}</h3><p class="note">${note}</p><div class="portrait-pair">${['before','after'].map((state)=>`<figure><a href="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" target="_blank" rel="noopener" aria-label="查看${title}${state==='before'?'修改前':'修改后'}大图（新窗口）"><img src="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" alt="${title} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`).join('')}</div></section>`).join('')}</div>`;
 }
 
 /* 作品详情：分栏按钮交互（左=缩略按钮+当前模块说明，右=放大图；两作品统一风格） */
