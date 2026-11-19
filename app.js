@@ -64,13 +64,14 @@ function splitCase(o){
 function guideCase(){return splitCase({
   eyebrow:'01 / 信息产品',
   title:'升学指南 · 专升本信息服务站',
-  desc:'把散在各处的专升本信息收拢成三个能查的模块：行情、投档线、资格与流程。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
+  desc:'把散在各处的升学信息收拢成四个能查的模块：专升本行情、投档线、报考资格流程，以及全国民办与国际学校的招生范围与对外名额。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
   shots:[
     {src:'assets/guide-shot1.jpg',label:'行情数据',cap:'行情数据 · 三年趋势，报考涨、公办缩',detail:'<p><strong>行情数据——</strong>把 2024—2026 三年报考人数、招生计划、公办/民办占比做进一张趋势图，先看今年整体是变难还是变容易，再决定冲哪类学校。</p>'},
     {src:'assets/guide-shot3.jpg',label:'投档线查询',cap:'投档线查询 · 按年份/院校/专业筛选',detail:'<p><strong>投档线查询——</strong>按年份、院校、专业三维筛选，直接回答“我这个专业多少分能上”。表里含院校、专业、投档最低分，可按分数从高到低排序。</p>'},
     {src:'assets/guide-shot4.jpg',label:'资格与流程',cap:'资格与流程 · 视频按身份跳章节',detail:'<p><strong>资格与流程——</strong>六类考生身份（统考/校荐/自荐/建档立卡/退役士兵/大赛保送）逐条拆：能不能报、什么时候报、和谁一起录，并配视频按身份跳章节。</p>'},
+    {src:'assets/guide-private.jpg',label:'民办校查询',cap:'民办校查询 · 省市区三级筛选，逐校看范围与名额',detail:'<p><strong>民办校查询——</strong>31 个省级行政区、289 条逐校记录：每所学校的小学／初中／高中分别写清“招生范围”和“对外招生名额”，可按省、市、区三级筛选，也能按学段只看有对外计划的学校。原文写明的跨区人数单独标出来，没公布的写“未单列”，不做估算。<a href="site/private.html" target="_blank" rel="noopener">打开查询页 ↗</a></p>'},
   ],
-  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；本作品仅覆盖山东省。'
+  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；专升本部分仅覆盖山东，民办校部分为全国 31 个省级行政区。'
 });}
 function policyCase(){
   var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');
@@ -117,17 +118,6 @@ function policyCase(){
   </section>
 
 
-  <section class="detail-section">
-    <h3 class="section-tag">同一个体系里的第二件东西 · 民办校查询</h3>
-    <p>讲解片解决「听不懂」，查询解决「查不到」。把 31 个省级行政区的民办与国际学校招生范围、对外招生名额做成一张能查的表：先选省份，再选城市和区，最后看学校；每所学校的小学 / 初中 / 高中分别写清招生范围和名额。</p>
-    <figure class="char-fig" style="margin:0 0 14px"><img src="assets/guide-private.jpg" alt="民办校查询页面：省市区三级筛选，逐校看招生范围与名额"></figure>
-    <ul class="case-notes">
-      <li><strong>能查到校：</strong>289 条逐校记录、94 个区县，原文写明的跨区人数单独标出来，没公布的写「未单列」，不做估算。</li>
-      <li><strong>按家长的问法筛：</strong>省、市、区三级联动，外加「只看小学 / 初中 / 高中」，因为家长最先问的是「我们区能报哪所」。</li>
-      <li><strong>讲解与查询配一对：</strong>视频讲清规则，查询页给具体学校，两个一起用才闭环。</li>
-    </ul>
-    <p class="note"><a href="site/private.html" target="_blank" rel="noopener">单独打开民办校查询页 ↗</a></p>
-  </section>
   <p class="note">边界：像素风降低门槛，但严肃政策仍需配文字版；3 分钟塞 9 个点偏密，真实场景应拆成 3 条短视频；未测完播率，章节跳转是解法但暂无数据验证。</p>
 </div>`;
 }
