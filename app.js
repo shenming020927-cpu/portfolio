@@ -62,8 +62,8 @@ function psbasicCase(){return splitCase({
   note:'四件都是练习作品，不是商单；版式参考了原作，调色参数和配色是自己重算的。'
 });}
 function portraitsCase(){
- const works=[['flower','持花人像','调色与修图'],['dress','古风人像','构图与调色'],['cutout','人物抠图','背景分离与纯色背景成片']];
- return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像修图 · 修改前后对照</h2><p class="description">三组个人练习，左修改前、右修改后并排对照。点击照片可在新窗口查看大图。</p>${works.map(([id,title,note],i)=>`<section class="portrait-section"><h3><span>0${i+1}</span> ${title}</h3><p class="note">${note}</p><div class="portrait-pair">${['before','after'].map((state)=>`<figure><a href="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" target="_blank" rel="noopener" aria-label="查看${title}${state==='before'?'修改前':'修改后'}大图（新窗口）"><img src="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" alt="${title} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`).join('')}</div></section>`).join('')}</div>`;
+ const works=[['flower','持花人像','调色与修图'],['street','秋日街角 · 环卫工','纪实调色：压黄、冷灰、暗部提亮'],['cutout','人物抠图','背景分离与纯色背景成片']];
+ return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像与纪实修图 · 修改前后对照</h2><p class="description">三组个人练习，左修改前、右修改后并排对照：人像两组、街头纪实一组。点击照片可在新窗口查看大图。</p>${works.map(([id,title,note],i)=>`<section class="portrait-section"><h3><span>0${i+1}</span> ${title}</h3><p class="note">${note}</p><div class="portrait-pair">${['before','after'].map((state)=>`<figure><a href="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" target="_blank" rel="noopener" aria-label="查看${title}${state==='before'?'修改前':'修改后'}大图（新窗口）"><img src="assets/portraits/${id}-${state}${id==='dress'&&state==='after'?'-v2':''}.jpg" alt="${title} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`).join('')}</div></section>`).join('')}</div>`;
 }
 
 /* 作品详情：分栏按钮交互（左=缩略按钮+当前模块说明，右=放大图；两作品统一风格） */
