@@ -28,7 +28,7 @@ function guideCase(){return `<div class="dialog-content"><div class="eyebrow">01
 
 var POLICY_CHAPTERS=[["00:01",1,"统考科目"],["00:16",16,"校荐生"],["00:48",48,"自荐生"],["01:08",68,"建档立卡"],["01:34",94,"退役士兵"],["02:10",130,"大赛保送"],["02:39",159,"共同时间"],["02:55",175,"最后提醒"],["03:08",188,"3+2 转段"]];
 
-function policyCase(){var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');return `<div class="dialog-content"><div class="eyebrow">02 / 视频作品</div><h2 id="dialog-title">专升本政策 · 3 分钟像素讲解</h2><p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节，点哪段看哪段。</p><figure class="video-player"><video id="policy-video" controls playsinline preload="metadata" poster="site/assets/eligibility-poster.jpg"><source src="site/assets/eligibility-2026-v9.mp4" type="video/mp4">当前浏览器不支持视频播放。</video></figure><p class="note">1280×720 · 时长 03:20 · 完整配音与字幕</p><h3>按身份跳转</h3><div class="chapter-grid">`+chs+`</div><h3>为什么拍成视频</h3><ul class="case-notes"><li><strong>政策类内容有两种读者：</strong>要核对的人（会看表格）和要听懂的人（只看视频）。只做文字等于放弃后者，而后者是大多数。</li><li><strong>章节按"你是哪种人"切，不按文件顺序切。</strong>学生一进来就能跳到自己那一段。</li><li><strong>一步只给一个信息点。</strong>像素风细节少，画面里多放一个元素，观众就不知道该看哪儿。</li></ul><h3>我知道的问题</h3><ul class="case-notes"><li>像素风降低门槛，但严肃政策用卡通形象，可信度会打折——所以视频旁边必须配文字版。</li><li>3 分钟塞 9 个信息点偏密，真实场景应该拆成 3 条 1 分钟短视频。</li><li>没测过完播率，章节跳转是我对"看不下去"的解法，但没有数据证明有效。</li></ul></div>`}
+function policyCase(){var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');return `<div class="dialog-content"><div class="eyebrow">02 / 视频作品</div><h2 id="dialog-title">招生政策 · 3 分钟像素讲解</h2><p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节，点哪段看哪段。</p><figure class="video-player"><video id="policy-video" controls playsinline preload="metadata" poster="site/assets/eligibility-poster.jpg"><source src="site/assets/eligibility-2026-v9.mp4" type="video/mp4">当前浏览器不支持视频播放。</video></figure><p class="note">1280×720 · 时长 03:20 · 完整配音与字幕</p><h3>按身份跳转</h3><div class="chapter-grid">`+chs+`</div><h3>同一个体系里的第二件东西：民办校查询</h3><p class="description">讲解片解决「听不懂」，查询解决「查不到」。把 31 个省级行政区的民办与国际学校招生范围、对外招生名额做成一张能查的表：先选省份，再选城市和区，最后看学校；每所学校的小学 / 初中 / 高中分别写清招生范围和名额。</p><figure class="video-player" style="aspect-ratio:auto"><img src="assets/guide-private.jpg" alt="民办校查询页面：省市区三级筛选、逐校招生范围与名额" style="width:100%;display:block"></figure><p class="note">289 条逐校记录 · 94 个区县 · 省市区三级联动 + 学段筛选 · <a href="site/private.html" target="_blank" rel="noopener">单独打开查询页 ↗</a></p><h3>为什么拍成视频</h3><ul class="case-notes"><li><strong>政策类内容有两种读者：</strong>要核对的人（会看表格）和要听懂的人（只看视频）。只做文字等于放弃后者，而后者是大多数。</li><li><strong>章节按"你是哪种人"切，不按文件顺序切。</strong>学生一进来就能跳到自己那一段。</li><li><strong>一步只给一个信息点。</strong>像素风细节少，画面里多放一个元素，观众就不知道该看哪儿。</li></ul><h3>我知道的问题</h3><ul class="case-notes"><li>像素风降低门槛，但严肃政策用卡通形象，可信度会打折——所以视频旁边必须配文字版。</li><li>3 分钟塞 9 个信息点偏密，真实场景应该拆成 3 条 1 分钟短视频。</li><li>没测过完播率，章节跳转是我对"看不下去"的解法，但没有数据证明有效。</li></ul></div>`}
 
 function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return;document.querySelectorAll('.chapter-btn').forEach(function(b){b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t)||0;v.play();});});v.addEventListener('timeupdate',function(){var t=v.currentTime;var els=document.querySelectorAll('.chapter-btn');var cur=0;POLICY_CHAPTERS.forEach(function(c,i){if(t>=c[1])cur=i;});els.forEach(function(x,i){x.classList.toggle('on',i===cur);});});}
 
@@ -64,20 +64,19 @@ function splitCase(o){
 function guideCase(){return splitCase({
   eyebrow:'01 / 信息产品',
   title:'升学指南 · 专升本信息服务站',
-  desc:'把散在各处的升学信息收拢成四个能查的模块：专升本行情、投档线、报考资格流程，以及全国民办与国际学校的招生范围与对外名额。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
+  desc:'把散在各处的专升本信息收拢成三个能查的模块：行情、投档线、资格与流程。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
   shots:[
     {src:'assets/guide-shot1.jpg',label:'行情数据',cap:'行情数据 · 三年趋势，报考涨、公办缩',detail:'<p><strong>行情数据——</strong>把 2024—2026 三年报考人数、招生计划、公办/民办占比做进一张趋势图，先看今年整体是变难还是变容易，再决定冲哪类学校。</p>'},
     {src:'assets/guide-shot3.jpg',label:'投档线查询',cap:'投档线查询 · 按年份/院校/专业筛选',detail:'<p><strong>投档线查询——</strong>按年份、院校、专业三维筛选，直接回答“我这个专业多少分能上”。表里含院校、专业、投档最低分，可按分数从高到低排序。</p>'},
     {src:'assets/guide-shot4.jpg',label:'资格与流程',cap:'资格与流程 · 视频按身份跳章节',detail:'<p><strong>资格与流程——</strong>六类考生身份（统考/校荐/自荐/建档立卡/退役士兵/大赛保送）逐条拆：能不能报、什么时候报、和谁一起录，并配视频按身份跳章节。</p>'},
-    {src:'assets/guide-private.jpg',label:'民办校查询',cap:'民办校查询 · 省市区三级筛选，逐校看范围与名额',detail:'<p><strong>民办校查询——</strong>31 个省级行政区、289 条逐校记录：每所学校的小学／初中／高中分别写清“招生范围”和“对外招生名额”，可按省、市、区三级筛选，也能按学段只看有对外计划的学校。原文写明的跨区人数单独标出来，没公布的写“未单列”，不做估算。<a href="site/private.html" target="_blank" rel="noopener">打开查询页 ↗</a></p>'}
   ],
-  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；专升本部分仅覆盖山东，民办校部分为全国 31 个省级行政区。'
+  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；本作品仅覆盖山东省。'
 });}
 function policyCase(){
   var chs=POLICY_CHAPTERS.map(function(c,i){return '<button type="button" class="chapter-btn" data-t="'+c[1]+'"><span class="ct">'+c[0]+'</span><span class="cn">'+c[2]+'</span></button>';}).join('');
   return `<div class="dialog-content video-details">
   <div class="eyebrow">02 / 视频作品</div>
-  <h2 id="dialog-title">专升本政策 · 3 分钟像素讲解</h2>
+  <h2 id="dialog-title">招生政策 · 3 分钟像素讲解</h2>
   <p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节，点哪段看哪段。</p>
 
   <section class="detail-section">
@@ -117,6 +116,18 @@ function policyCase(){
     <p class="note">点击章节后，视频从对应位置播放；播放时右侧章节会高亮你正在看的那一段。</p>
   </section>
 
+
+  <section class="detail-section">
+    <h3 class="section-tag">同一个体系里的第二件东西 · 民办校查询</h3>
+    <p>讲解片解决「听不懂」，查询解决「查不到」。把 31 个省级行政区的民办与国际学校招生范围、对外招生名额做成一张能查的表：先选省份，再选城市和区，最后看学校；每所学校的小学 / 初中 / 高中分别写清招生范围和名额。</p>
+    <figure class="char-fig" style="margin:0 0 14px"><img src="assets/guide-private.jpg" alt="民办校查询页面：省市区三级筛选，逐校看招生范围与名额"></figure>
+    <ul class="case-notes">
+      <li><strong>能查到校：</strong>289 条逐校记录、94 个区县，原文写明的跨区人数单独标出来，没公布的写「未单列」，不做估算。</li>
+      <li><strong>按家长的问法筛：</strong>省、市、区三级联动，外加「只看小学 / 初中 / 高中」，因为家长最先问的是「我们区能报哪所」。</li>
+      <li><strong>讲解与查询配一对：</strong>视频讲清规则，查询页给具体学校，两个一起用才闭环。</li>
+    </ul>
+    <p class="note"><a href="site/private.html" target="_blank" rel="noopener">单独打开民办校查询页 ↗</a></p>
+  </section>
   <p class="note">边界：像素风降低门槛，但严肃政策仍需配文字版；3 分钟塞 9 个点偏密，真实场景应拆成 3 条短视频；未测完播率，章节跳转是解法但暂无数据验证。</p>
 </div>`;
 }
