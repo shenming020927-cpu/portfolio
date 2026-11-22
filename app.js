@@ -41,7 +41,7 @@ function posterCase(){return splitCase({
 
 function aivideoCase(){return splitCase({
   eyebrow:'03 / AI 视频',
-  title:'AI 短剧《下一页》· 待完善',
+  title:'AI 短剧《下一页》<span class="wip-tag">待完善</span>',
   desc:'14 秒的图书馆夜戏。真正决定成片的不是模型，是提示词工程：先用分镜草图和白模把构图、走位、光位定死，再把参考帧、风格和动作时序拆成结构化提示词，交给即梦一段段生成。',
   shots:[
     {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'},
