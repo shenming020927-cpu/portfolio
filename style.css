@@ -178,3 +178,9 @@ body{
 
 /* 标题旁的「待完善」标记 */
 .wip-tag{display:inline-block;margin-left:.55em;padding:2px 9px;border:2px solid currentColor;font-size:.42em;line-height:1.3;letter-spacing:.08em;vertical-align:.18em;white-space:nowrap}
+
+/* hero 入口：PDF 附件与查询页链接 */
+.hero-buttons{flex-wrap:wrap}
+.button.ghost{background:transparent;color:var(--ink);border-color:var(--ink);gap:18px}
+.button.ghost:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 0 var(--ink)}
+@media(max-width:600px){.button.ghost{gap:10px}}
