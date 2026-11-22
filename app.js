@@ -21,21 +21,34 @@ function closeDialog(){const v=dialog.querySelector('video');if(v)v.pause();dial
 $('#close-dialog').addEventListener('click',closeDialog);
 dialog.addEventListener('close',()=>{const v=dialog.querySelector('video');if(v)v.pause();document.body.style.overflow='';if(lastTrigger)lastTrigger.focus();});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog();}});
-document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{lastTrigger=button;const _p=button.dataset.project;if(_p==='psbasic'){body.innerHTML=psbasicCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='portraits'){body.innerHTML=portraitsCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='aivideo'){body.innerHTML=aivideoCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='guide'){body.innerHTML=guideCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='policy'){body.innerHTML=policyCase();bindPolicy();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='video'){body.innerHTML=videoCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}body.innerHTML=excelCase();body.querySelector("#preview-zoom").addEventListener("click",e=>{const zoom=body.querySelector(".preview-scroll").classList.toggle("is-zoom");e.currentTarget.setAttribute("aria-pressed",String(zoom));e.currentTarget.textContent=zoom?"恢复适应宽度":"放大查看";});body.querySelectorAll("[data-sheet]").forEach(tab=>tab.addEventListener("click",()=>{body.querySelectorAll("[data-sheet]").forEach(b=>b.setAttribute("aria-pressed",String(b===tab)));const img=body.querySelector("#sheet-preview");img.src="assets/excel/latest-"+tab.dataset.sheet+".jpg";img.alt=tab.textContent+"：模拟数据水印预览";body.querySelector("#sheet-caption").textContent=tab.textContent+" · 模拟数据展示";}));dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';}));
+document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{lastTrigger=button;const _p=button.dataset.project;if(_p==='poster'){body.innerHTML=posterCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='psbasic'){body.innerHTML=psbasicCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='portraits'){body.innerHTML=portraitsCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='aivideo'){body.innerHTML=aivideoCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='guide'){body.innerHTML=guideCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='policy'){body.innerHTML=policyCase();bindPolicy();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}if(_p==='video'){body.innerHTML=videoCase();dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';return;}body.innerHTML=excelCase();body.querySelector("#preview-zoom").addEventListener("click",e=>{const zoom=body.querySelector(".preview-scroll").classList.toggle("is-zoom");e.currentTarget.setAttribute("aria-pressed",String(zoom));e.currentTarget.textContent=zoom?"恢复适应宽度":"放大查看";});body.querySelectorAll("[data-sheet]").forEach(tab=>tab.addEventListener("click",()=>{body.querySelectorAll("[data-sheet]").forEach(b=>b.setAttribute("aria-pressed",String(b===tab)));const img=body.querySelector("#sheet-preview");img.src="assets/excel/latest-"+tab.dataset.sheet+".jpg";img.alt=tab.textContent+"：模拟数据水印预览";body.querySelector("#sheet-caption").textContent=tab.textContent+" · 模拟数据展示";}));dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';}));
 
 
 var POLICY_CHAPTERS=[["00:01",1,"统考科目"],["00:16",16,"校荐生"],["00:48",48,"自荐生"],["01:08",68,"建档立卡"],["01:34",94,"退役士兵"],["02:10",130,"大赛保送"],["02:39",159,"共同时间"],["02:55",175,"最后提醒"],["03:08",188,"3+2 转段"]];
 
 function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return;document.querySelectorAll('.chapter-btn').forEach(function(b){b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t)||0;v.play();});});v.addEventListener('timeupdate',function(){var t=v.currentTime;var els=document.querySelectorAll('.chapter-btn');var cur=0;POLICY_CHAPTERS.forEach(function(c,i){if(t>=c[1])cur=i;});els.forEach(function(x,i){x.classList.toggle('on',i===cur);});});}
 
-function aivideoCase(){return splitCase({
-  eyebrow:'04 / AI 视频',
-  title:'AI 短片《下一页》',
-  desc:'一场夜戏，从白模预演到成片：先用灰模把机位、走位、光位定死，再让 AI 出片。AI 视频最难的不是画质，是人物在每个镜头里长得一样、动作接得上——这套流程就是为了控制这件事。',
+function posterCase(){return splitCase({
+  eyebrow:'01 / 平面设计',
+  title:'招生简章 · 三折页',
+  desc:'给学校做的一张招生简章：绿色主色压住版面，建筑照片托出真实校园，三个信息区只回答家长最关心的三件事——拿过什么奖、教什么课、往哪升学。成品按印刷厂要求做成 A4 三折：210×285mm、出血 3mm、300dpi、CMYK。',
   shots:[
-    {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'}
+    {src:'assets/poster/cover.jpg',label:'成品 · 正面',cap:'招生简章 · 三折页成品（A4 三折，210×285mm）',detail:'<p><strong>成品——</strong>上半幅用建筑照片做视觉锚点，绿色色块从折线处切进来，压住下半部的信息区；标题「招生简章 / Admission Brochure」居中，校徽落在左上角。三个板块（奖项荣誉 / 特色课程 / 多语言教育）左侧排文字、右侧配图片证据，底部三枚六边形标签收「小班辅导 / 封闭管理 / 多元升学」。</p>'},
+    {src:'assets/poster/print-setup.jpg',label:'印刷设置',cap:'PS 三折页画布 · 210×285mm / 出血 3mm / 300dpi',detail:'<p><strong>印刷设置——</strong>按印刷厂要求建画布：A4 印刷版三折 210×285mm、出血 3mm、300dpi，勾选 CMYK 文档，正反两份分开生成。折页和单页不一样：折线两侧的内容要错开排，不然折完会切到字。</p>'}
   ],
-  note:'流程：手绘分镜 → 3D 白模预演 → 灯光测试 → AI 生成 → 拼接调色。这里只放封面，白模与测试帧不铺开；成片在即梦画布里继续生成：<a href="https://jimeng.jianying.com/ai-tool/ai-canvas/c6905d03-5df5-4c78-b2ba-a87f8e90dc7c" target="_blank" rel="noopener">在即梦打开项目画布 ↗</a>（需登录即梦账号）'
+  note:'源文件为分层 PSD 和印刷 PDF（A4 三折，约 36MB），需要可以单独发。版式、配色、图片处理都是自己做的；校名、地址、电话为示例信息。'
+});}
+
+function aivideoCase(){return splitCase({
+  eyebrow:'03 / AI 视频',
+  title:'AI 短剧《下一页》',
+  desc:'14 秒的图书馆夜戏。真正决定成片的不是模型，是提示词工程：先用分镜草图和白模把构图、走位、光位定死，再把参考帧、风格和动作时序拆成结构化提示词，交给即梦一段段生成。',
+  shots:[
+    {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'},
+    {src:'assets/aivideo/prompt-engineering.jpg',label:'提示词工程',cap:'即梦 · 分镜提示词工程（14 秒照片序列，21:9 实拍段）',detail:'<p><strong>提示词工程——</strong>9 张分镜参考帧按镜头顺序排成序列，提示词分三层写：①整体节奏与风格（黑边、取景框 HUD、快门声、白闪）；②以「01_到场」作实拍段最后一帧，保证动作接得上；③每段的时间码、画幅和人物姿态（0–2.5 秒 21:9 实拍、两人第一帧即对视、手扶椅背不再走动）。输出画布固定 16:9，不跟着参考帧漂移。</p>'},
+    {src:'assets/aivideo/previs-3.jpg',label:'白模预演',cap:'白模预演 · 先把走位和光位定死',detail:'<p><strong>白模预演——</strong>生成之前先用灰模摆一遍：人物站位、身体朝向、镜头高度、桌上道具的位置都先确定。白模不追求好看，只负责在上模型之前把「构图对不对、动作接不接得上」这两件事解决掉。</p>'}
+  ],
+  note:'流程：分镜草图 → 3D 白模预演 → 灯光测试 → 结构化提示词 → 即梦生成 → 拼接调色。成片在即梦画布里继续生成：<a href="https://jimeng.jianying.com/ai-tool/ai-canvas/c6905d03-5df5-4c78-b2ba-a87f8e90dc7c" target="_blank" rel="noopener">在即梦打开项目画布 ↗</a>（需登录即梦账号）'
 });}
 
 function psbasicCase(){return splitCase({
@@ -88,7 +101,8 @@ function splitCase(o){
         +'<div class="work-includes"><h3>这一屏在讲什么</h3><div class="shot-detail-stack">'+details+'</div></div>'
       +'</div>'
       +'<div class="work-right"><figure class="shot-preview">'
-        +'<img id="shot-preview-img" src="'+first.src+'" alt="'+(first.cap||'')+'">'
+        +'<a id="shot-preview-link" href="'+first.src+'" target="_blank" rel="noopener" aria-label="查看大图（新窗口）">'
+        +'<img id="shot-preview-img" src="'+first.src+'" alt="'+(first.cap||'')+'"></a>'
         +'<figcaption id="shot-preview-cap">'+(first.cap||'')+'</figcaption>'
       +'</figure></div>'
     +'</div>'
@@ -150,7 +164,8 @@ dialog.addEventListener('click',function(e){
     var idx=btn.dataset.idx;
     var img=wrap.querySelector('#shot-preview-img');
     var cap=wrap.querySelector('#shot-preview-cap');
-    if(img){img.src=btn.dataset.full;img.alt=btn.dataset.cap||'';}
+    if(img){img.src=btn.dataset.full;img.alt=btn.dataset.cap||'';
+      var link=wrap.querySelector('#shot-preview-link');if(link)link.href=btn.dataset.full;}
     if(cap){cap.textContent=btn.dataset.cap||'';}
     wrap.querySelectorAll('.shot-btn').forEach(function(b){b.classList.toggle('is-active',b===btn);});
     wrap.querySelectorAll('.shot-detail').forEach(function(d){d.classList.toggle('is-show',d.dataset.idx===idx);});

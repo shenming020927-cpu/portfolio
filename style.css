@@ -167,3 +167,11 @@ body{
 .compare-cover .protected-cover{width:100%;height:300px;margin:0;border:1px solid var(--line);object-fit:contain;background:var(--soft);display:block}
 .compare-cover figcaption{font-size:10px;color:var(--muted);text-align:center;padding-top:5px}
 @media(max-width:600px){.compare-cover .protected-cover{height:220px}}
+
+/* 首页卡片：竖版印刷成品 */
+.poster-work .protected-cover{height:420px;object-fit:contain;background:var(--soft);padding:10px}
+@media(max-width:600px){.poster-work .protected-cover{height:auto;padding:6px}}
+
+/* 弹窗大图可点开原尺寸 */
+.shot-preview>a{display:block;cursor:zoom-in}
+.shot-preview>a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
