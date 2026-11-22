@@ -160,3 +160,10 @@ body{
 .album-grid.is-contain img{aspect-ratio:4/3;object-fit:contain;background:#f5f3ee;padding:6px}
 .design-work .protected-cover{height:350px;object-fit:contain;background:var(--soft);padding:10px}
 @media(max-width:600px){.design-work .protected-cover{height:220px}}
+
+/* 首页卡片：前后对比封面 */
+.compare-cover{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.compare-cover figure{margin:0;min-width:0}
+.compare-cover .protected-cover{width:100%;height:300px;margin:0;border:1px solid var(--line);object-fit:contain;background:var(--soft);display:block}
+.compare-cover figcaption{font-size:10px;color:var(--muted);text-align:center;padding-top:5px}
+@media(max-width:600px){.compare-cover .protected-cover{height:220px}}

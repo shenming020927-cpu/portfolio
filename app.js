@@ -60,13 +60,11 @@ function portraitsCase(){
    const f=(state)=>`<figure><a href="assets/portraits/${id}-${state}.jpg" target="_blank" rel="noopener" aria-label="查看大图（新窗口）"><img src="assets/portraits/${id}-${state}.jpg" alt="${id} · ${state==='before'?'修改前':'修改后'}" loading="lazy"></a><figcaption>${state==='before'?'修改前':'修改后'}<span>查看大图 ↗</span></figcaption></figure>`;
    return `<div class="portrait-pair">${f('before')}${f('after')}</div>`;
  };
- return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">纪实修图 · 修改前后对照</h2><p class="description">主看一组街头纪实：压黄、冷灰、抬暗部，让脏和旧变成质感而不是噪点。左修改前、右修改后，点照片可看大图；另外两组练习收在下面的相册里。</p>
- <section class="portrait-section"><h3><span>02</span> 秋日街角 · 环卫工</h3><p class="note">纪实调色：压黄、冷灰、暗部提亮</p>${pair('street')}</section>
- <div class="album"><h3>相册 · 其他练习</h3><div class="album-grid">
-   <figure><a href="assets/portraits/flower-after.jpg" target="_blank" rel="noopener"><img src="assets/portraits/flower-after.jpg" alt="持花人像" loading="lazy"></a><figcaption>持花人像 · 调色与修图</figcaption></figure>
-   <figure><a href="assets/portraits/cutout-after.jpg" target="_blank" rel="noopener"><img src="assets/portraits/cutout-after.jpg" alt="人物抠图" loading="lazy"></a><figcaption>人物抠图 · 背景分离与纯色背景</figcaption></figure>
- </div></div>
- </div>`;
+ return `<div class="dialog-content portrait-details"><div class="eyebrow">03 / 图像作品</div><h2 id="dialog-title">人像与纪实修图 · 修改前后对照</h2><p class="description">三组都是同一张图的修改前后对照，左修改前、右修改后，点照片可看大图。看调色方向、皮肤处理、背景分离各自把原片推到了哪里。</p>
+  <section class="portrait-section"><h3><span>01</span> 持花人像</h3><p class="note">人像调色与修图：肤色提亮、暗部压住、整体偏暖</p>${pair('flower')}</section>
+  <section class="portrait-section"><h3><span>02</span> 秋日街角 · 环卫工</h3><p class="note">纪实调色：压黄、冷灰、暗部提亮</p>${pair('street')}</section>
+  <section class="portrait-section"><h3><span>03</span> 人物抠图</h3><p class="note">背景分离：横构图原片到竖版纯色背景成片</p>${pair('cutout')}</section>
+  </div>`;
 }
 
 
@@ -167,10 +165,16 @@ document.querySelectorAll('.work-tab').forEach(function(tab){
   tab.addEventListener('click',function(){
     var row=tab.closest('.project-row');
     if(!row)return;
-    var cover=row.querySelector('.protected-cover');
-    if(cover){cover.src=tab.dataset.cover;cover.alt=tab.dataset.cap||'';}
+    if(tab.dataset.before||tab.dataset.after){
+      var cb=row.querySelector('.cover-before'),ca=row.querySelector('.cover-after');
+      if(cb&&tab.dataset.before){cb.src=tab.dataset.before;cb.alt=(tab.dataset.cap||'')+' · 修改前';}
+      if(ca&&tab.dataset.after){ca.src=tab.dataset.after;ca.alt=(tab.dataset.cap||'')+' · 修改后';}
+    }else{
+      var cover=row.querySelector('.protected-cover');
+      if(cover){cover.src=tab.dataset.cover;cover.alt=tab.dataset.cap||'';}
+    }
     var cap=row.querySelector('.visual-caption');
-    if(cap){cap.innerHTML=tab.textContent+'<span>↗</span>';}
+    if(cap){cap.innerHTML=(tab.dataset.cap||tab.textContent)+'<span>↗</span>';}
     row.querySelectorAll('.work-tab').forEach(function(b){b.classList.toggle('is-active',b===tab);});
   });
 });
