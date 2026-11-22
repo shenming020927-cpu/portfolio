@@ -31,24 +31,23 @@ function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return
 function posterCase(){return splitCase({
   eyebrow:'01 / 平面设计',
   title:'招生简章 · 三折页',
-  desc:'给学校做的一张招生简章：绿色主色压住版面，建筑照片托出真实校园，三个信息区只回答家长最关心的三件事——拿过什么奖、教什么课、往哪升学。成品按印刷厂要求做成 A4 三折：210×285mm、出血 3mm、300dpi、CMYK。',
+  desc:'给学校做的一张招生简章：绿色主色压住版面，建筑照片托出真实校园，三个信息区只回答家长最关心的三件事——拿过什么奖、教什么课、往哪升学。成品是 A4 三折，出血 216×303mm、成品 210×297mm、300dpi、CMYK；建画布这一步用 AI 写了个脚本自动做。<a href="assets/poster/招生海报-三折页.pdf" download>下载印刷版 PDF（约 36MB）↗</a>',
   shots:[
-    {src:'assets/poster/cover.jpg',label:'成品 · 正面',cap:'招生简章 · 印刷成品（A4）',detail:'<p><strong>成品——</strong>上半幅用建筑照片做视觉锚点，绿色色块从折线处切进来，压住下半部的信息区；标题「招生简章 / Admission Brochure」居中，校徽落在左上角。三个板块（奖项荣誉 / 特色课程 / 多语言教育）左侧排文字、右侧配图片证据，底部三枚六边形标签收「小班辅导 / 封闭管理 / 多元升学」。</p>'},
-    {src:'assets/poster/print-setup.jpg',label:'印刷设置',cap:'PS 三折页画布 · 210×285mm / 出血 3mm / 300dpi',detail:'<p><strong>印刷设置——</strong>按印刷厂要求建画布：A4 印刷版三折 210×285mm、出血 3mm、300dpi，勾选 CMYK 文档，正反两份分开生成。折页和单页不一样：折线两侧的内容要错开排，不然折完会切到字。</p>'}
-  ],
-  note:'源文件为分层 PSD 和印刷 PDF（约 36MB），需要可以单独发。这里展示的是印刷导出的单页预览；三折页的外面 / 里面如需要可再补。版式、配色、图片处理都是自己做的；校名、地址、电话为示例信息。'
+    {src:'assets/poster/print-setup.jpg',label:'印刷脚本',cap:'印刷脚本 · 设标准尺寸 / 出血 / CMYK，自动出画布',detail:'<p><strong>印刷脚本——</strong>用 AI 写了一个 Photoshop 印刷脚本，把日常建画布那些机械性的操作去掉：只填画布的印刷标准尺寸、出血线大小和 CMYK 颜色模式，脚本就按印刷规范把画布、出血线、折线一次性建好，并生成外面 / 里面两份，如右图所示。</p>'},
+    {src:'assets/poster/print-output.jpg',label:'生成结果',cap:'脚本输出 · 三折页-外面 / 三折页-里面（出血 216×303mm）',detail:'<p><strong>生成结果——</strong>脚本跑完得到两个文件：三折页-外面、三折页-里面；辅助线按成品 210×297mm、出血 216×303mm、折线三等分自动画好。画布和折页结构到位之后，剩下的才是往里填内容。</p>'},
+    {src:'assets/poster/cover.jpg',label:'成品 · 正面',cap:'招生简章 · 印刷成品（A4 三折）',detail:'<p><strong>成品——</strong>上半幅用建筑照片做视觉锚点，绿色色块从折线处切进来，压住下半部的信息区；标题「招生简章 / Admission Brochure」居中，校徽落在左上角。三个板块（奖项荣誉 / 特色课程 / 多语言教育）左侧排文字、右侧配图片证据，底部三枚六边形标签收「小班辅导 / 封闭管理 / 多元升学」。</p>'}
+  ]
 });}
 
 function aivideoCase(){return splitCase({
   eyebrow:'03 / AI 视频',
-  title:'AI 短剧《下一页》',
+  title:'AI 短剧《下一页》· 待完善',
   desc:'14 秒的图书馆夜戏。真正决定成片的不是模型，是提示词工程：先用分镜草图和白模把构图、走位、光位定死，再把参考帧、风格和动作时序拆成结构化提示词，交给即梦一段段生成。',
   shots:[
     {src:'assets/aivideo/cover.jpg',label:'封面',cap:'《下一页》· 图书馆闭馆前',detail:'<p><strong>封面——</strong>一张桌子两端：穿灰卫衣的女生伸手，穿黑开衫的女生坐着抬头，两个人在同一盏灯下。画面按取景器做：时间码、ISO、焦段都是印上去的，提示这是一段拍出来的戏。</p>'},
     {src:'assets/aivideo/prompt-engineering.jpg',label:'提示词工程',cap:'即梦 · 分镜提示词工程（14 秒照片序列，21:9 实拍段）',detail:'<p><strong>提示词工程——</strong>9 张分镜参考帧按镜头顺序排成序列，提示词分三层写：①整体节奏与风格（黑边、取景框 HUD、快门声、白闪）；②以「01_到场」作实拍段最后一帧，保证动作接得上；③每段的时间码、画幅和人物姿态（0–2.5 秒 21:9 实拍、两人第一帧即对视、手扶椅背不再走动）。输出画布固定 16:9，不跟着参考帧漂移。</p>'},
     {src:'assets/aivideo/previs-3.jpg',label:'白模预演',cap:'白模预演 · 先把走位和光位定死',detail:'<p><strong>白模预演——</strong>生成之前先用灰模摆一遍：人物站位、身体朝向、镜头高度、桌上道具的位置都先确定。白模不追求好看，只负责在上模型之前把「构图对不对、动作接不接得上」这两件事解决掉。</p>'}
-  ],
-  note:'流程：分镜草图 → 3D 白模预演 → 灯光测试 → 结构化提示词 → 即梦生成 → 拼接调色。成片在即梦画布里继续生成：<a href="https://jimeng.jianying.com/ai-tool/ai-canvas/c6905d03-5df5-4c78-b2ba-a87f8e90dc7c" target="_blank" rel="noopener">在即梦打开项目画布 ↗</a>（需登录即梦账号）'
+  ]
 });}
 
 function psbasicCase(){return splitCase({
@@ -107,55 +106,31 @@ function splitCase(o){
       +'</figure></div>'
     +'</div>'
     +(o.album&&o.album.length?('<div class="album"><h3>相册 · 其他练习</h3><div class="album-grid'+(o.albumFit==='contain'?' is-contain':'')+'">'+o.album.map(function(a){return '<figure><a href="'+a.src+'" target="_blank" rel="noopener" aria-label="查看大图（新窗口）"><img src="'+a.src+'" alt="'+a.cap+'" loading="lazy"></a><figcaption>'+a.cap+'</figcaption></figure>';}).join('')+'</div></div>'):'')
-    +'<p class="note">'+o.note+'</p>'
+    +(o.note?('<p class="note">'+o.note+'</p>'):'')
   +'</div>';
 }
 function guideCase(){return splitCase({
-  eyebrow:'01 / 信息产品',
-  title:'升学指南 · 专升本信息服务站',
-  desc:'把散在各处的升学信息收拢成三个能查的模块：民办校查询（小学 / 初中 / 高中）、专升本行情数据、专升本投档线查询。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
+  eyebrow:'02 / 信息产品',
+  title:'学习规划指南 · 专升本信息服务站',
+  desc:'把散在各处的升学信息收拢成三个能查的模块：小初阶段、专升本行情数据、专升本投档线查询。点左侧按钮，右边看大图、下面读这一屏在讲什么。',
   shots:[
-    {src:'assets/guide-private.jpg',label:'民办校查询 · 小初高',cap:'民办校查询 · 小初高 · 省市区三级筛选，逐校看范围与名额',detail:'<p><strong>民办校查询 · 小学 / 初中 / 高中——</strong>31 个省级行政区、289 条逐校记录：每所学校的小学／初中／高中分别写清“招生范围”和“对外招生名额”，可按省、市、区三级筛选，也能按学段只看有对外计划的学校。原文写明的跨区人数单独标出来，没公布的写“未单列”，不做估算。<a href="site/private.html" target="_blank" rel="noopener">打开查询页 ↗</a></p>'},
+    {src:'assets/guide-private.jpg',label:'小初阶段',cap:'小初阶段 · 省市区三级筛选，逐校看范围与名额',detail:'<p><strong>小初阶段 · 小学 / 初中——</strong>31 个省级行政区、289 条逐校记录：每所学校的小学／初中分别写清“招生范围”和“对外招生名额”，可按省、市、区三级筛选，也能按学段只看有对外计划的学校。原文写明的跨区人数单独标出来，没公布的写“未单列”，不做估算。<a href="site/private.html" target="_blank" rel="noopener">打开查询页 ↗</a></p>'},
     {src:'assets/guide-shot1.jpg',label:'行情数据 · 专升本',cap:'行情数据 · 专升本 · 三年趋势，报考涨、公办缩',detail:'<p><strong>行情数据 · 专升本——</strong>把 2024—2026 三年报考人数、招生计划、公办/民办占比做进一张趋势图，先看今年整体是变难还是变容易，再决定冲哪类学校。</p>'},
-    {src:'assets/guide-shot3.jpg',label:'投档线查询 · 专升本',cap:'投档线查询 · 专升本 · 按年份/院校/专业筛选',detail:'<p><strong>投档线查询 · 专升本——</strong>按年份、院校、专业三维筛选，直接回答“我这个专业多少分能上”。表里含院校、专业、投档最低分，可按分数从高到低排序。</p>'},
-  ],
-  note:'点击左侧任意按钮，右侧大图与下方说明会一起切换到对应模块；数据为静态，每年政策变动靠人工更新；专升本部分仅覆盖山东，民办校部分为全国 31 个省级行政区。'
+    {src:'assets/guide-shot3.jpg',label:'投档线查询 · 专升本',cap:'投档线查询 · 专升本 · 按年份/院校/专业筛选',detail:'<p><strong>投档线查询 · 专升本——</strong>按年份、院校、专业三维筛选，直接回答“我这个专业多少分能上”。表里含院校、专业、投档最低分，可按分数从高到低排序。</p>'}
+  ]
 });}
-function policyCase(){
-  return `<div class="dialog-content video-details">
-  <div class="eyebrow">02 / 视频作品</div>
-  <h2 id="dialog-title">招生政策 · 3 分钟像素讲解</h2>
-  <p class="description">政策原文我整理过，信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节。</p>
 
-  <figure class="video-cover"><img src="site/assets/eligibility-poster.jpg" alt="招生政策像素讲解片封面：小书与六类考生章节"><figcaption>成片封面 · 1280×720 · 时长 03:20</figcaption></figure>
+function policyCase(){return splitCase({
+  eyebrow:'04 / 视频作品',
+  title:'招生政策 · 3 分钟像素讲解',
+  desc:'政策原文信息是对的，但学生不看。于是设计虚拟形象「小书」，把六类考生的流程拍成像素风讲解片，按身份切章节。',
+  shots:[
+    {src:'site/assets/eligibility-poster.jpg',label:'成片封面',cap:'成片封面 · 1280×720 · 时长 03:20',detail:'<p><strong>成片封面——</strong>封面就是全片的基调：小书站在画面中间，后面排开六类考生的章节。像素风不是装饰，是把「政策」这件严肃的事降到学生愿意点开的门槛。</p>'},
+    {src:'assets/policy-frame1.jpg',label:'虚拟形象 · 小书',cap:'虚拟形象 · 小书（像素风串场讲解员）',detail:'<p><strong>虚拟形象 · 小书——</strong>一个像素风小人，负责把每一类考生的流程串起来。政策内容严肃又枯燥，用稳定的角色能把九段流程串成一条线，观众记住的是“小书讲的第几类”，而不是一堆散点。</p><ul><li><strong>统一画风：</strong>固定像素配色与造型，全片视觉一致，先降打开门槛。</li><li><strong>角色即线索：</strong>六类考生由同一个角色串讲，身份切换不跳戏。</li><li><strong>讲出人味：</strong>把政策条款转成“小书跟你讲”，家长学生才听得进去。</li></ul>'},
+    {src:'assets/policy-frame2.jpg',label:'分镜脚本',cap:'分镜脚本 · 按身份拆 9 章',detail:'<p><strong>分镜脚本——</strong>按六类考生身份拆成 9 个章节，一步只给一个信息点：先定「小书」的像素造型与配色，再按身份拆章节顺序，最后用 AI 首尾帧生成 1280×720 的像素风成片，含配音与字幕。</p>'}
+  ]
+});}
 
-  <section class="detail-section">
-    <h3 class="section-tag">虚拟形象 · 小书</h3>
-    <div class="char-block">
-      <div class="char-text">
-        <p>「小书」是这条讲解片的串场讲解员——一个像素风小人，负责把每一类考生的流程讲清楚。政策内容严肃又容易枯燥，用稳定的虚拟角色能把九段流程串成一条线，观众记住的是“小书讲的第几类”，而不是一堆零散的知识点。</p>
-        <ul class="case-notes">
-          <li><strong>统一画风：</strong>固定像素配色与造型，全片视觉一致，先把打开门槛降下来。</li>
-          <li><strong>角色即线索：</strong>六类考生由同一个角色串讲，身份切换不跳戏。</li>
-          <li><strong>讲出人味：</strong>把“政策条款”转成“小书跟你讲”，家长学生才听得进去。</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="detail-section">
-    <h3 class="section-tag">流程介绍 · 怎么做出来的</h3>
-    <ol class="process-steps">
-      <li><em>01</em><div><b>角色设定</b>先定「小书」的像素造型与配色，定下全片视觉基调。</div></li>
-      <li><em>02</em><div><b>分镜脚本</b>按六类考生身份拆成 9 个章节，一步只给一个信息点。</div></li>
-      <li><em>03</em><div><b>视频生成</b>用 AI 首尾帧生成像素风成片，1280×720，含配音与字幕。</div></li>
-    </ol>
-  </section>
-
-
-  <p class="note">边界：像素风降低门槛，但严肃政策仍需配文字版；3 分钟塞 9 个点偏密，真实场景应拆成 3 条短视频；未测完播率，章节跳转是解法但暂无数据验证；这里只放封面，成片与分镜不再铺开。</p>
-</div>`;
-}
 dialog.addEventListener('click',function(e){
   var btn=e.target.closest('.shot-btn');
   if(btn){
