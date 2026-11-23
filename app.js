@@ -31,7 +31,7 @@ function bindPolicy(){var v=document.querySelector('#policy-video');if(!v)return
 function posterCase(){return splitCase({
   eyebrow:'01 / 平面设计',
   title:'招生简章',
-  desc:'给学校做的一张招生简章：绿色主色压住版面，建筑照片托出真实校园，三个信息区只回答家长最关心的三件事——拿过什么奖、教什么课、往哪升学。成品是 A4，210×297mm、出血 216×303mm、300dpi、CMYK；建画布这一步用 AI 写了个脚本自动做。<a href="assets/poster/招生海报-印刷版.pdf" download>下载印刷版 PDF（约 36MB）↗</a>',
+  desc:'给学校做的一张招生简章：绿色主色压住版面，建筑照片托出真实校园，三个信息区只回答家长最关心的三件事——拿过什么奖、教什么课、往哪升学。成品是 A4，210×297mm、出血 216×303mm、300dpi、CMYK；建画布这一步用 AI 写了个脚本自动做。<a href="assets/poster/招生海报.psd" download>下载源文件 PSD（约 93MB）↗</a>',
   shots:[
     {src:'assets/poster/print-setup.jpg',label:'印刷脚本',cap:'印刷脚本 · 设标准尺寸 / 出血 / CMYK，自动出画布',detail:'<p><strong>印刷脚本——</strong>用 AI 写了一个 Photoshop 印刷脚本，把日常建画布那些机械性的操作去掉：只填画布的印刷标准尺寸、出血线大小和 CMYK 颜色模式，脚本就按印刷规范把画布、出血线一次建好，并生成外面 / 里面两份，如右图所示。</p>'},
     {src:'assets/poster/print-output.jpg',label:'生成结果',cap:'脚本输出 · 外面 / 里面两份画布（出血 216×303mm）',detail:'<p><strong>生成结果——</strong>脚本跑完得到两个文件：外面、里面；辅助线按成品 210×297mm、出血 216×303mm 自动画好。画布结构到位之后，剩下的才是往里填内容。</p>'},
